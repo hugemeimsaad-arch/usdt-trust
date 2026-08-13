@@ -1,42 +1,116 @@
+/* Base Layout & Dark Theme Setup */
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0b0d17;
+  color: #e0e6ed;
   text-align: center;
-  padding: 50px;
+  padding: 50px 20px;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
+
+/* Glassmorphism Container with Ambient Glow */
 .container {
+  position: relative;
   max-width: 400px;
-  margin: 0 auto;
-  padding: 30px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 100%;
+  padding: 40px 30px;
+  background: rgba(20, 24, 40, 0.75);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.15),
+              inset 0 0 15px rgba(0, 242, 254, 0.05);
+  animation: containerAppear 0.8s ease-out forwards;
 }
+
+/* Headings */
+h2 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Glowing Dynamic Button */
 button {
-  background: #007bff;
-  color: white;
+  position: relative;
+  background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+  color: #ffffff;
   border: none;
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-size: 16px;
-  border-radius: 5px;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
-  transition: 0.3s;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 198, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-button:hover {
-  background: #0056b3;
-  transform: scale(1.05);
+
+/* Button Hover State */
+button:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 198, 255, 0.8),
+              0 0 40px rgba(0, 114, 255, 0.6);
 }
+
+/* Button Active State */
+button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Button Disabled State */
 button:disabled {
-  background: #ccc;
+  background: #2a2f3d;
+  color: #6c757d;
   cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
+
+/* Status Indicator with Pulse Effect */
 #status {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 14px;
-  color: #d32f2f;
-  font-weight: bold;
+  color: #ff4d4d;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(255, 77, 77, 0.6);
+  animation: statusPulse 2s infinite ease-in-out;
 }
-h2 {
-  color: #1a1a1a;
+
+/* --- Animations --- */
+
+/* Container Entrance */
+@keyframes containerAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Status Glow Pulse */
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 0.8;
+    text-shadow: 0 0 8px rgba(255, 77, 77, 0.4);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(255, 77, 77, 0.9);
+  }
 }
